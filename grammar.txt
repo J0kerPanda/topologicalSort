@@ -1,0 +1,14 @@
+<All-formulas> ::= <Formula-names> = <Formulas> NEXTLINE <Rest-formulas>
+<Formula-names> ::= IDENT <Formula-names-sub> //Names must be unique
+<Formula-names-sub> ::= , <Formula-names> | E
+<Rest-formulas> ::= <All-formulas> | E
+
+<Formulas> ::= <Sum> <Next-formulaText>
+<Next-formulaText> ::= , <Formulas> | E //count of formulas and formulas-names must match
+
+<Sum> ::= <Mul> <Sum-sub>
+<Sum-sub> ::= + <Sum> | - <Sum> | E
+
+<Mul> ::= <Var> <Mul-sub>
+<Var> ::= NUMBER | IDENT | ( <Sum> ) | - <Var> //all idents must be defined in functions
+<Mul-sub> ::= * <Mul> | / <Mul> | E	
